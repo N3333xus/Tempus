@@ -1,4 +1,5 @@
 use gtk4 as gtk;
+use crate::gtk::Button;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
 
@@ -6,18 +7,32 @@ const APP_ID: &str = "org.gtk_rs.HelloWorld2";
 
 fn main() -> glib::ExitCode {
     
-    let app = Application::builder().application_id(APP_ID).build(); // creates a new app
+    let app = Application::builder().application_id(APP_ID).build();
 
-    app.connect_activate(build_ui); // Connect to "activate" signal of `app`
+    app.connect_activate(build_ui); 
 
     app.run()
 }
 
 fn build_ui(app: &Application) {
-    // Create a window and set the title
+    
+    let button = Button::builder()
+        .label("Press me!")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+
+    button.connect_clicked(|button| {
+
+        button.set_label("Hello World!");
+    });
+
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
+        .child(&button)
         .build();
 
     window.present();

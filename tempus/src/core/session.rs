@@ -1,0 +1,1 @@
+// gerenciamento de sessões do timer

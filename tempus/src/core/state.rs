@@ -1,0 +1,1 @@
+// estado do app = work, break, paused
